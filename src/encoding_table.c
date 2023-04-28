@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "encoding_table.h"
+#include "fse_internals.h"
 
 static FrequencySymbol *upperRow;
 static int stateByChar[256];

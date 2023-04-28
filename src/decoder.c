@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #include "string_operations.h"
-#include "encoding_table.h"
+#include "fse_internals.h"
 
 static const char *input;
 static int inputLength;

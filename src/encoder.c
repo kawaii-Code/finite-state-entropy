@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "encoding_table.h"
+#include "fse_internals.h"
 
 static int state;
 
