@@ -57,16 +57,33 @@ int main(int argc, char **argv) {
     return -1;
   }
 
-  int n = read_int();
+  int n;
   int length;
-  FrequencySymbol *symbols = read_frequency_symbols(n, &length);
+  FrequencySymbol *symbols;
+  char* input;
+
+  if (argc == 3) {
+    FILE *file = fopen(argv[2], "r");
+    symbols = counter_count_symbols_in_file(file, &n, &length);
+    fclose(file);
+
+    FILE *fileDup = fopen(argv[2], "r");
+    input = malloc(sizeof(char) * (length + 1));
+    char c;
+    int index = 0;
+    while ((c = fgetc(fileDup)) != EOF)
+      input[index++] = c;
+    input[index] = '\0';
+    fclose(fileDup);
+  } else {
+    n = read_int();
+    symbols = read_frequency_symbols(n, &length);
+    scanf("%s100", input);
+  }
 
   if ((length & (length - 1)) != 0) {
     normalize_input(n, symbols, length);
   }
-
-  char input[100];
-  scanf("%s100", input);
 
   fse_init(n, length, symbols);
   if (isEncode) {
